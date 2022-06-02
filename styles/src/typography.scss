@@ -1,0 +1,13 @@
+@use "./text";
+
+h1 {
+  @include text.title;
+}
+
+h2 {
+  @include text.heading;
+}
+
+p {
+  @include text.paragraph;
+}

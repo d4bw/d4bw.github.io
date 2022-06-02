@@ -1,0 +1,32 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:list";
+@use "scss-utils/list-utils";
+
+$_transition: (
+  duration: (
+    fast: 200ms,
+  ),
+  timing: (
+    default: ease,
+  ),
+  delay: (
+    none: 0ms,
+  ),
+);
+
+@function get($k...) {
+  @return map.get($_transition, $k...);
+}
+
+@mixin fast($properties...) {
+  $_p: none;
+  @if list.length($properties) == 0 {
+    $_p: all;
+  } @else {
+    $_p: list-utils.to-string($properties);
+  }
+  
+  transition: #{none get(duration, fast) get(timing, default) get(delay, none)};
+  transition-property: $_p;
+}

@@ -1,0 +1,78 @@
+@use "sass:math";
+@use "../color";
+@use "../mixins";
+@use "../spacing";
+@use "../text";
+@use "../transition";
+
+.footer {
+  width: 100%;
+  padding: spacing.get(4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: spacing.get(4);
+
+  $_footer: &;
+  &__row {
+    $_column-gap: spacing.get(8);
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: spacing.get(4) $_column-gap;
+
+    --logo-col-width: calc(#{math.div(100%, 3)} - #{$_column-gap});
+    &__logo-copyright {
+      flex: 0 0 var(--logo-col-width);
+        
+      #{$_footer}__copyright {
+        margin-top: spacing.get(2);
+      }
+    }
+
+    &__section {
+      @include mixins.clamp-flex-cols(1, 4, 0, spacing.get(4), $_column-gap, calc(100% - var(--logo-col-width)));
+      display: flex;
+      flex-direction: column;
+      gap: spacing.get(2);
+      @include text.nowrap;
+
+      &__heading {
+        @include text.subtitle;
+        @include text.weight(regular);
+        @include color.text(text, translucent);
+      }
+
+      &__items {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: spacing.get(2);
+
+        &__item {
+
+          &__link {
+            display: block;
+            @include text.family(default);
+            @include text.size(paragraph);
+            @include text.weight(semibold);
+            @include text.nowrap;
+            
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__copyright {
+    @include text.subtitle;
+    @include color.text(text, translucent);
+    @include text.nowrap;
+  }
+}
+

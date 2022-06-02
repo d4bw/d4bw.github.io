@@ -1,0 +1,14 @@
+@use "./color";
+
+.color-sustainability {
+  @include color.text(theme, sustainability);
+}
+.color-humanityd {
+  @include color.text(theme, humanityd);
+}
+.color-behavior {
+  @include color.text(theme, behavior);
+}
+.color-meaning {
+  @include color.text(theme, meaning);
+}

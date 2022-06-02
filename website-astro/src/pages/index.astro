@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HomepageTopics from "../sections/index/Topics"
+
+import Button from '../components/Button';
+
+import homepageStyles from "@d4bw/styles/src/pages/home.module.scss"
+
+function heroButtonOnClick() {
+	document.getElementById('topics').scrollIntoView({ behavior: 'smooth' })
+}
+---
+<Layout title="Design for a Better World">
+	<div class={homepageStyles['homepage']}>
+		<div class={homepageStyles['homepage__hero']}>
+			<div class={homepageStyles['homepage__hero__content']}>
+				<div class={homepageStyles['homepage__hero__content__text']}>
+					<span class={homepageStyles['homepage__hero__content__title']}>Design for a Better World</span>
+					<h2 class={homepageStyles['homepage__hero__content__quote']}>If it is design that got us into today's mess, perhaps it is design that can get us out.</h2>
+				</div>
+				<Button
+					variant="pill"
+					fill="solid"
+					label="Browse Topics ↓"
+					class={homepageStyles['homepage__hero__button']}
+					onClick={heroButtonOnClick}
+					client:load
+				/>
+			</div>
+		</div>
+		<div id="topics" class={homepageStyles['homepage__topics']}>
+			<HomepageTopics />
+		</div>
+		<div id="resources" class={homepageStyles['homepage__resources']}>
+			<h2 class={homepageStyles['homepage__resources__heading']}>Resources</h2>
+			<div class={homepageStyles['homepage__resources__cards']}>
+				<!-- TODO -->
+			</div>
+			<a href="/resources">
+				<Button
+					variant="pill"
+					fill="solid"
+					label="Browse More Resources ↓"
+					class={homepageStyles['homepage__resources__button']}
+				/>
+			</a>
+		</div>
+	</div>
+</Layout>

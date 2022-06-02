@@ -1,0 +1,13 @@
+{
+  "name": "@d4bw/styles",
+  "version": "0.1.0",
+  "private": true,
+  "files": ["src", "dist"],
+  "scripts": {
+    "watch": "sass -w src:dist",
+    "build": "sass src:dist -s compressed"
+  },
+  "devDependencies": {
+    "sass": "^1.51.0"
+  }
+}

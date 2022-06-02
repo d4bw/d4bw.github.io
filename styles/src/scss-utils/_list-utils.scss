@@ -1,0 +1,25 @@
+@use "sass:list";
+
+// shallow merges an arbitrary number of lists together
+@function collect($args...) {
+  $res: ();
+  @each $l in $args {
+    $res: list.join($res, $l);
+  }
+  @return $res;
+}
+
+@function to-string($l, $sep: ",") {
+  $_n: list.length($l);
+  @if $_n == 0 {
+    @return "";
+  }
+
+  $res: list.nth($l, 1);
+  @if $_n > 1 {
+    @for $i from 2 through $_n {
+      $res: #{$res}#{$sep}#{list.nth($l, $i)};
+    }  
+  }
+  @return $res;
+}

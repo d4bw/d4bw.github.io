@@ -1,0 +1,103 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+
+// shallow merges an arbitrary number of maps together
+@function collect($maps...) {
+  $res: ();
+  @each $m in $maps {
+    $res: map.merge($res, $m);
+  }
+  @return $res;
+}
+
+// unpacks a map. useful for mixins and such
+// @param $prefix: prefix to append to keys when unpacking the map
+@mixin unpack($m, $prefix: '') {
+  @each $k, $v in $m {
+    #{$prefix}#{$k}: #{$v};
+  }
+}
+
+// "flattens" a map, and changes each key to be prefixed with dash-joined [$prefix, $keys...]
+// eg if we have a map `$a: ( b: ( c: d, e: f ), g: h )`, and we call...
+//  flatten($a, '')            // =>    ( b-c: d, b-e: f, g: h )
+//  flatten($a, 'a')           // =>    ( a-b-c: d, a-b-e: f, a-g: h )
+//  flatten($a, '', b)         // =>    ( b-c: d, b-e: f )
+//  flatten($a, '', (b,c), g)  // =>    ( b-c: d, g: h )
+//  flatten($a, 'a', (b,c), g) // =>    ( a-b-c: d, a-g: h )
+
+@function _flatten-helper($m, $prefix: '') {
+  $res: ();
+
+  // do nothing if $m is null
+  @if meta.type-of($m) == null {
+    @return $res;
+  }
+  
+  // if $m is actually a string or number and $prefix is nonempty, create an entry of ( $prefix: $m )
+  @if (
+    meta.type-of($m) == string
+    or meta.type-of($m) == number
+    or (
+      meta.type-of($m) == list
+      and list.length($m) > 0
+    )
+  ) and string.length($prefix) > 0 {
+    $res: map.merge($res, (#{$prefix}: #{$m} ));
+    @return $res;
+  }
+
+  // $m is, in fact, a map
+  @each $k, $v in $m {
+    @if not (meta.type-of($v) == list and list.length($v) == 0) { // skip empty maps `()`, which are typed as lists
+
+      // extend the prefix. if no prefix, set it to the key so there's no leading/trailing dash
+      $new-prefix: '#{$prefix}-#{$k}';
+      @if string.length($prefix) == 0 {
+        $new-prefix: '#{$k}';
+      }
+
+      // recurse on nested maps, or otherwise merge in the key value pair
+      @if meta.type-of($v) == map {
+        $res: map.merge($res, _flatten-helper($v, '#{$new-prefix}'))
+      } @else {
+        $res: map.merge($res, ( #{$new-prefix}: #{$v}));
+      }
+    }
+  }
+  @return $res;
+};
+@function flatten($m, $prefix: '', $include: ()) {
+  $res: ();
+
+  @if list.length($include) == 0 {
+    $res: _flatten-helper($m, $prefix)
+  } @else {
+    // go through each list of keys to include
+    @each $keys in $include {
+
+      // get the prefix and corresponding key-value pair or map to include
+      $mm: $m;
+      $pre: $prefix;
+      @each $k in $keys {
+        $mm: map.get($mm, $k);
+        @if string.length($pre) == 0 {
+          $pre: '#{$k}';
+        } @else {
+          $pre: '#{$pre}-#{$k}';
+        }
+      }
+
+      @if meta.type-of($mm) == map {
+        // merge in the resultant included map
+        $res: map.merge($res, _flatten-helper($mm, $pre));
+      } @else if meta.type-of($mm) != list {
+        $res: map.merge($res, (#{$pre}: #{$mm}));
+      }
+      
+    }
+  }
+  @return $res;
+}

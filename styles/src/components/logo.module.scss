@@ -1,0 +1,22 @@
+@use "../spacing";
+@use "../text";
+
+@mixin logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  @include logo-container;
+
+  &__image {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  &__text {
+    margin-left: spacing.get(1);
+    @include text.subtitle;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+}

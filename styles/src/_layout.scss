@@ -1,0 +1,30 @@
+@use "./breakpoint";
+@use "./spacing";
+
+/* constrained width content */
+@mixin article($w: breakpoint.get(desktop-lg)) {
+  width: 100%;
+  max-width: breakpoint.get(desktop-lg);
+  margin: {
+    left: auto;
+    right: auto;
+  }
+  padding: {
+    left: spacing.space(2);
+    right: spacing.space(2);
+  }
+
+  @include breakpoint.min(desktop-lg) {
+    padding: {
+      left: spacing.space(4);
+      right: spacing.space(4);
+    }
+  }
+}
+
+@mixin full-bleed() {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+}

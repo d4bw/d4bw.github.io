@@ -1,0 +1,17 @@
+@use "../color";
+@use "../text";
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  @include color.text(text, light);
+  @include color.background(background, dark);
+  @include text.size(base); 
+
+  .main {
+    flex-grow: 1;
+    width: 100%;
+  }
+}

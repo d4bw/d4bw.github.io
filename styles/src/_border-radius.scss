@@ -1,0 +1,19 @@
+@use "sass:map";
+@use "./spacing";
+
+$_border-radius: (
+  none: 0rem,
+  minimal: spacing.get(px, 4),
+  xs: spacing.get(xs),
+  md: spacing.get(md),
+  1: spacing.get(1),
+  2: spacing.get(2),
+);
+
+@function get($k...) {
+  @return map.get($_border-radius, $k...);
+}
+
+@mixin of-size($k...) {
+  border-radius: get($k...);
+}

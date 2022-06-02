@@ -1,0 +1,16 @@
+@use "sass:map";
+
+$_breakpoints: (
+  tablet-md: 768px,
+  desktop-lg: 1440px,
+);
+
+@function get($k...) {
+  @return map.get($_breakpoints, $k...);
+}
+
+@mixin min($k...) {
+  @media only screen and (min-width: get($k...)) {
+    @content;
+  }
+}

@@ -1,0 +1,90 @@
+@use "sass:math";
+@use "./scss-utils/css";
+@use "./color";
+
+@mixin dropdown-arrow {
+  &:after {
+    $_dropdown-arrow-spacing: 0.25em;
+    content: "";
+    border-width: 0.4em 0.4em 0;
+    border-style: solid;
+    border-color: currentColor transparent;
+    margin-left: $_dropdown-arrow-spacing;
+    position: relative;
+  }
+}
+
+/* scrollbar */
+
+// TODO: update default track/thumb color 
+@mixin scrollbar(
+  $scrollbar-size: 8px,
+  $track-color: color.get(surface, light),
+  $thumb-color: color.get(text, dark),
+  $track-border-radius: $scrollbar-size,
+  $thumb-padding: 1px,
+  $thumb-border-radius: $scrollbar-size,
+  ) {
+  &::-webkit-scrollbar {
+    height: $scrollbar-size;
+    width: $scrollbar-size;
+
+    &-track {
+      background-color: $track-color;
+      border-radius: $track-border-radius;
+    }
+    
+    &-thumb {
+      background-color: $thumb-color;
+      border-radius: $thumb-border-radius;
+      border: $thumb-padding solid $track-color; 
+    }
+  }
+}
+
+// utility mixin for clamping flexbox items within a specific number of columns.
+// ensure the flex container can wrap items.
+// set `$fix-col-widths` to true to make all items equal width
+@mixin clamp-flex-cols($n_cols-min, $n_cols-max, $col-min-width: 0, $row-gap: 0px, $col-gap: 0px, $container-max-width: 100%, $fix-col-widths: false) {  
+  --tmp-cg: #{$col-gap};
+  --tmp-conmw: #{$container-max-width};
+
+  $_grow: 1;
+  @if $fix-col-widths {
+    $_grow: 0;
+  }
+
+  flex: $_grow 0 css.min(
+    css.max(
+      $col-min-width,
+      calc(#{math.div(var(--tmp-conmw), $n_cols-max)} - var(--tmp-cg) * #{math.div($n_cols-max - 1, $n_cols-max)}), 
+    ),
+    calc(#{math.div(var(--tmp-conmw), $n_cols-min)} - var(--tmp-cg) * #{math.div($n_cols-min - 1, $n_cols-min)}),
+  );
+}
+
+
+// utility mixin for clamping css grids within a specific number of columns
+// set `$fix-col-widths` to true to make all items equal width
+@mixin clamp-grid-cols($n_cols-min, $n_cols-max, $col-min-width, $row-gap: 0px, $col-gap: 0px, $container-max-width: 100%, $fix-col-widths: false) {
+  --tmp-colmw: #{$col-min-width};
+  --tmp-rg: #{$row-gap};
+  --tmp-cg: #{$col-gap};
+  --tmp-conmw: #{$container-max-width};
+
+  $val: css.min(
+    css.max(
+      var(--tmp-colmw),
+      calc(#{math.div(var(--tmp-conmw), $n_cols-max)} - var(--tmp-cg) * #{math.div($n_cols-max - 1, $n_cols-max)}),
+    ),
+    calc(#{math.div(var(--tmp-conmw), $n_cols-min)} - var(--tmp-cg) * #{math.div($n_cols-min - 1, $n_cols-min)}),
+  );
+  $col-width: minmax(#{$val}, 1fr);
+  @if $fix-col-widths {
+    $col-width: minmax(0, $val);
+  }
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, $col-width);
+  gap: $row-gap $col-gap;
+}

@@ -1,0 +1,7 @@
+@use "./text";
+@use "./mixins";
+
+html {
+  @include text.family(default);
+  @include mixins.scrollbar();
+}

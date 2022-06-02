@@ -1,0 +1,28 @@
+@use "../spacing";
+@use "../text";
+@use "../transition";
+
+.button {
+  @include text.button;
+  color: var(--button-color-text);
+  background-color: var(--button-color-background);
+  border: spacing.get(px, 1) solid var(--button-color-border, transparent);
+  @include transition.fast(color, background-color, border);
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--variant--pill {
+    padding: spacing.get(1) spacing.get(2);
+    border-radius: max(100vw, 100vh);
+  }
+
+  &--fill--solid {
+
+  }
+
+  &--fill--outlined {
+    --button-color-border: var(--button-color-text);
+  }
+}

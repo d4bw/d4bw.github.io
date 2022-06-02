@@ -1,0 +1,144 @@
+@use "../breakpoint";
+@use "../color";
+@use "../layout";
+@use "../spacing";
+@use "../text";
+@use "../components/header.module" as header;
+
+.homepage {
+  width: 100%;
+  max-width: breakpoint.get(desktop-lg);
+  margin: 0 auto;
+
+  &__hero {
+    width: 100%;
+    min-height: calc(100vh - #{header.$header-height});
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include spacing.section-padding;
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &__text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      &__title {
+        @include text.monospace;
+      }
+
+      &__quote {
+        margin-top: spacing.get(1);
+        @include text.family(display);
+        @include text.size(title);
+        @include text.weight(bold);
+        text-align: center;
+        line-height: 1.5;
+      }
+    }
+
+    &__content &__button {
+      margin-top: spacing.get(3);
+    }
+
+    &__button {
+      @include color.button(color.get(text, dark), color.get(background, light));
+
+      &:hover {
+        @include color.button($background: color.get(surface, light));
+      }
+    }
+  }
+
+  &__topics {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include spacing.section-padding;
+    padding-bottom: 0;
+
+    &__topic {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+
+      &:nth-child(2n) {
+        flex-flow: row-reverse wrap;
+      }
+
+      &__content, &__image {
+        flex: 1 1 auto;
+      }
+
+      &__content {
+        flex: 1 1 480px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 2rem;
+        padding: 4rem;
+        
+        &__text {
+          &__heading {
+            @include text.overline;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+          }
+        }
+
+        &__button-link {
+          &__button {
+            @include color.button(color.get(text, light));
+            border: spacing.get(px, 1) solid color.get(text, white);
+
+            &:hover {
+              @include color.button($background: color.get(surface, dark));
+            }
+          }
+        }
+      }
+
+      &__image {
+        max-width: 50%;
+        // height: auto;
+      }
+    }
+  }
+
+  &__resources {
+    @include spacing.section-padding;
+    @include layout.full-bleed;
+    @include color.text(text, dark);
+    @include color.background(surface, light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: spacing.section-spacing();
+
+    &__heading {
+
+    }
+
+    &__cards {
+
+    }
+
+    &__button {
+      @include color.button(color.get(text, light), color.get(background, dark));
+
+      &:hover {
+        @include color.button($background: color.get(surface, dark));
+      }
+    }
+  }
+}

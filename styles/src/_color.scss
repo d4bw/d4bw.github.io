@@ -1,0 +1,47 @@
+@use "sass:map";
+
+$_color: (
+  text: (
+    light: #ffffff,
+    dark: #222222,
+    translucent: rgb(255, 255, 255, 0.5),
+  ),
+  background: (
+    light: #ffffff,
+    dark: #000000,
+  ),
+  surface: (
+    light: #f2f2f2,
+    dark: #222222,
+  ),
+  theme: (
+    sustainability: #a0ff5f,
+    humanityd: #fded5e,
+    behavior: #ff8e6a,
+    meaning: #73d0ff, 
+  ),
+);
+
+@function get($k...) {
+  @return map.get($_color, $k...);
+}
+
+@mixin text($k...) {
+  color: get($k...);
+}
+
+@mixin background($k...) {
+  background-color: get($k...);
+}
+
+@mixin button($text: null, $background: null, $border: null) {
+  @if $text != null {
+    --button-color-text: #{$text};
+  }
+  @if $background != null {
+    --button-color-background: #{$background};
+  }
+  @if $border != null {
+    --button-color-border: #{$border};
+  }
+}
