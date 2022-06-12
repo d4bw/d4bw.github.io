@@ -1,0 +1,60 @@
+title: Humanity-Centered Design
+paragraphs:
+  - Humanity-Centered Design describes the active practice of designing with entire ecosystems of people in mind. This means designing with the people you’re designing for, and supporting their designs derived from their unique lived experiences.
+sections:
+  - title: Community-Driven
+    paragraphs:
+      - Humanity-Centered Design empowers the inclusion of people,  their communities and their environment into design practices. The key pillar to HumanityD is what we refer to as being community-driven.
+    image:
+      url: ./assets/community-driven.png
+    featured example:
+      title: Sandbag Houses
+      paragraphs: 
+        - With a growing problem of affordable housing in a Cape Town community, designers wanted to help to create a way to have inexpensive and sustainable architectural design. Using locally sourced materials, a new EcoBeams system with sandbags, and local input, design group MMA Architects were able to come up with a solid plan.
+        - Locally sourcing helped cut down transportation costs, sandbags were sustainable and more affordable, and the community helped a great deal in the process. The blueprints and methods were then handed over to African governments for further implementation.
+      card: sandbag houses
+    cards:
+      - loseter - public garden
+      - bamboo houses
+  - title: Design Education
+    paragraphs:
+      - One way to think about it is redefining design as human-centered thinking.  Other disciplines can implement it into their practices and if people across disciplines and professions  work actively with human and humanity-centered thinking, design can be efficient and revolutionary.
+    image:
+      url: ./assets/design education.png
+    featured example:
+      title: Design Education
+      paragraphs:
+        - The good thing about design is that everybody can be a designer. Everybody is a designer. With improved education, implementation of design education, and creating accessible skills and tools, we can empower everyone to design for themselves.
+        - One way to think about it is redefining design as human-centered thinking.  Other disciplines can implement it into their practices and if people across disciplines and professions  work actively with human and humanity-centered thinking, design can be efficient and revolutionary.
+      card: k-8 design school
+    cards:
+      - diy movement & tiktok
+      - thinking by design
+  - title: Incrementalism
+    paragraphs:
+      - Incrementalism is the process of moving forward in small, considered steps, fitting the opportunities offered at the moment to the changes that the project hopes to make. It avoids tackling the entire problem all at once with a single leap into an unknown future.
+    image:
+      url: https://images.unsplash.com/photo-1560563609-3b4b1f5c2122?auto=format&fit=crop&w=800&q=80 # source: https://unsplash.com/photos/4dA7DiHPrp4
+    featured example:
+      title: Renewable Water
+      paragraphs:
+        - In 1971, policymakers proposed a project that would be beneficial to the state of Arizona. They knew that a water supply that can be secure and renewable would be essential given the climate of Arizona and took in consideration generations to come. After a course of 20 years, the Central Arizona Project now provides a renewable water suppply for more than 80% of the state's population.
+        - This engineering marvel shows how a successful project shouldn't be rushed and looking at different factors will eventually be beneficial to producing positive results. Looking at large problems then solving them incrementally is an important skill for future designers to produce greater long term effects.
+      card: central arizona project - renewable water
+    cards:
+      - informal settlements
+      - power of incrementalism
+  - title: Scale
+    paragraphs:
+      - Scaled-down corporations can serve more specific needs and approach a wide demographic if done correctly. They allow more specific needs of people to be met within the distribution of a product or service. Popularizing the concept of scaled-down companies would make companies more focused and intentional.
+    image:
+      url: ./assets/scale.png
+    featured example:
+      title: 3D Printed Housing
+      paragraphs:
+        - 3D Printed Housing means sustaining - maintaining - the current status indefinitely. When the term is used with reference to the planet, it means to maintain life in a stable state. Sustainability of the planet can only occur if everyone stops the activities that are leading to more harm, ideally while also reversing the harm that has already been done.
+        - Anyone can learn how to incorporate eco-friendly and sustainable habits into their daily lifestyles with the right information.
+      card: icon - 3d printed housing
+    cards:
+      - dig - locally sourced food
+      - third wave coffee

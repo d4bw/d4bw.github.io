@@ -15,6 +15,7 @@ $_nav-dropdown-vertical-offset: spacing.get(sm);
 $header-height: $_header-vertical-padding * 2 + $_nav-item-padding * 2 + text.get(size, base) + text.$line-height-flat-offset;
         
 .header {
+  z-index: 2;
   width: 100%;
   padding: $_header-vertical-padding spacing.get(4);
   display: flex;
@@ -34,7 +35,6 @@ $header-height: $_header-vertical-padding * 2 + $_nav-item-padding * 2 + text.ge
         @include text.size(base);
         @include text.weight(semibold);
 
-        
         &__link {
           padding: $_nav-item-padding - $_nav-link-border-bottom-thickness;
           border-bottom: $_nav-link-border-bottom-thickness solid transparent;

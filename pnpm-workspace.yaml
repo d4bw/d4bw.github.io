@@ -1,4 +1,5 @@
 packages:
-  - 'packages/**'
-  - 'styles'
-  - 'website-astro'
+  - data
+  - packages/**
+  - styles
+  - website-astro

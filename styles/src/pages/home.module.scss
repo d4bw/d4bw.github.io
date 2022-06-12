@@ -1,24 +1,31 @@
+@use "sass:math";
+@use "../scss-utils/css";
 @use "../breakpoint";
 @use "../color";
 @use "../layout";
+@use "../mixins";
 @use "../spacing";
 @use "../text";
 @use "../components/header.module" as header;
 
+$_homepage-assets-path: "/static/pages/home";
+$_hero-bg-filename: "hero-bg.png";
+
 .homepage {
-  width: 100%;
-  max-width: breakpoint.get(desktop-lg);
-  margin: 0 auto;
+  /* empty for now */
 
   &__hero {
     width: 100%;
-    min-height: calc(100vh - #{header.$header-height});
+    min-height: 100vh;
+    background: center / 100% 100% no-repeat url(#{$_homepage-assets-path}/#{$_hero-bg-filename});
+    margin-top: -1 * header.$header-height;
+    @include spacing.section-padding($top: spacing.get(4) + header.$header-height); // additionally pad by header height, to offset the negative margin.
     display: flex;
     align-items: center;
     justify-content: center;
-    @include spacing.section-padding;
-
+    
     &__content {
+      @include layout.article;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -57,12 +64,10 @@
   }
 
   &__topics {
-    width: 100%;
+    @include layout.article($pad: false);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    @include spacing.section-padding;
-    padding-bottom: 0;
 
     &__topic {
       display: flex;
@@ -73,19 +78,43 @@
         flex-flow: row-reverse wrap;
       }
 
-      &__content, &__image {
+      &--sustainability {
+        --homepage-topics-panel-overline-color: #{color.get(theme, sustainability)};
+      }
+      &--humanity-centered-design {
+        --homepage-topics-panel-overline-color: #{color.get(theme, humanity-centered-design)};
+      }
+      &--human-behavior {
+        --homepage-topics-panel-overline-color: #{color.get(theme, human-behavior)};
+      }
+      &--meaning {
+        --homepage-topics-panel-overline-color: #{color.get(theme, meaning)};
+      }
+
+      &__panel {
         flex: 1 1 auto;
+
+        $_panel-min-size: math.div(breakpoint.get-rem(desktop-lg), 3);
+
+        &--content {
+          flex-basis: $_panel-min-size;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          gap: 2rem;
+          @include spacing.section-padding;
+        }
+
+        &--image {
+          width: 50%;
+          max-width: max($_panel-min-size, 50%);
+          object-fit: cover;
+          aspect-ratio: 1 / 1;
+        }
       }
 
       &__content {
-        flex: 1 1 480px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        gap: 2rem;
-        padding: 4rem;
-        
         &__text {
           &__heading {
             @include text.overline;
@@ -93,44 +122,49 @@
             align-items: center;
             gap: 1rem;
             margin-bottom: 1rem;
+            color: var(--homepage-topics-panel-overline-color);
           }
         }
 
-        &__button-link {
-          &__button {
-            @include color.button(color.get(text, light));
-            border: spacing.get(px, 1) solid color.get(text, white);
+        &__button {
+          @include color.button(color.get(text, light));
+          border: spacing.get(px, 1) solid color.get(text, white);
 
-            &:hover {
-              @include color.button($background: color.get(surface, dark));
-            }
+          &:hover {
+            @include color.button($background: color.get(surface, dark));
           }
         }
-      }
-
-      &__image {
-        max-width: 50%;
-        // height: auto;
       }
     }
   }
 
   &__resources {
-    @include spacing.section-padding;
-    @include layout.full-bleed;
     @include color.text(text, dark);
     @include color.background(surface, light);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: spacing.section-spacing();
+    
+    &__article {
+      @include layout.article;
+      @include spacing.section-padding;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: spacing.get(4);
+    }
 
     &__heading {
-
+      /* empty for now */
     }
 
     &__cards {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: spacing.get(1);
 
+      &__card {
+        /* empty for now */
+      }
     }
 
     &__button {

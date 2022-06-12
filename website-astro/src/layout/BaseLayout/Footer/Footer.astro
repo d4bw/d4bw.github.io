@@ -1,0 +1,32 @@
+---
+import Logo from "../Logo"
+
+import footerStyles from "~/styles/src/components/footer.module.scss"
+import logoStyles from "~/styles/src/components/logo.module.scss"
+
+import type { FooterYaml } from "@/types/data/footer.d"
+
+const footerYaml = (await import("~/data/footer.yaml")).default as FooterYaml
+const columns = Object.entries(footerYaml.columns).map(([label, items]) => ({ label, items }))
+---
+
+<footer class={footerStyles['footer']}>
+  <div class={footerStyles['footer__row']}>
+    <div class={footerStyles['footer__row__logo-copyright']}>
+      <div class={logoStyles['logo']}><Logo /></div>
+      <div class={footerStyles['footer__copyright']}>© 2023 JND.ORG</div>
+    </div>
+    {columns.map(({ label, items}) => (
+      <li class={footerStyles['footer__row__section']}>
+        <h4 class={footerStyles['footer__row__section__heading']}>{label}</h4>
+        <ul class={footerStyles['footer__row__section__items']}>
+          {items.map(({ label, url }) => (
+            <li class={footerStyles['footer__row__section__items__item']}>
+              <a href={url} class={footerStyles['footer__row__section__items__item__link']}>{label}</a>
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </div>
+</footer>

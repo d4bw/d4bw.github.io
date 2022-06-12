@@ -1,0 +1,41 @@
+---
+import LinkButton from "@/components/Button/LinkButton.astro"
+import Card from "@/components/Card"
+
+import { getCardWithId } from "@/lib/cards"
+
+import homepageStyles from "~/styles/src/pages/home.module.scss"
+
+import type { HomepageResourcesYaml } from "@/types/data/homepage.d"
+
+const homepageResourcesYaml = (await import('~/data/pages/home/resources.yaml')).default as HomepageResourcesYaml
+
+const cards = homepageResourcesYaml!.resources.cards.map((id) => getCardWithId(id))
+---
+
+<div id="resources" class={homepageStyles['homepage__resources']}>
+  <div class={homepageStyles['homepage__resources__article']}>
+    <h2 class={homepageStyles['homepage__resources__heading']}>Resources</h2>
+    <div class={homepageStyles['homepage__resources__cards']}>
+      {cards.map((card) => (
+        <Card
+          class={homepageStyles['homepage__resources__cards__card']}
+          variant="default"
+          id={card.id}
+          tags={card.tags}
+          image={card.image}
+          title={card.title}
+          description={card.description}
+          url={card.url}
+        />
+      ))}
+    </div>
+    <LinkButton
+      href="/resources"
+      variant="pill"
+      fill="solid"
+      label="Browse More Resources ↓"
+      class={homepageStyles['homepage__resources__button']}
+    />
+  </div>
+</div>

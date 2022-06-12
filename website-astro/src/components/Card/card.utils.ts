@@ -1,0 +1,1 @@
+export const getCardId = (id: string | undefined) => id === undefined ? undefined : `card-${id}`

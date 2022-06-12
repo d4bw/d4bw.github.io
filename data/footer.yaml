@@ -1,0 +1,24 @@
+columns:
+    Sections:
+      - label: Sustainability
+        url: /sustainability
+      - label: Humanity-Centered Design
+        url: /humanity-centered-design
+      - label: Human Behavior
+        url: /human-behavior
+      - label: Meaning
+        url: /meaning
+    Resources:
+      - label: FAQs
+        url: /faq
+      - label: Watch
+        href: /TODO
+      - label: Read
+        href: /TODO
+      - label: Act
+        href: /TODO
+    About:
+      - label: Author
+        href: /about
+      - label: Acknowledgments
+        href: /TODO

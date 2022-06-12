@@ -1,0 +1,49 @@
+---
+import c from "@/utils/c"
+import { getCardId } from "./card.utils"
+
+import cardStyles from "~/styles/src/components/card.module.scss"
+
+export interface Props {
+  variant: 'default' | 'full-width' | 'subtopic'
+  id?: string
+  tags: string[]
+  image: {
+    url: string
+    alt?: string
+  }
+  title: string
+  description: string
+  url: string
+  class?: string
+}
+
+const variantToClass: Record<Props['variant'], string> = {
+  'default': cardStyles['card--default'],
+  'full-width': cardStyles['card--full-width'],
+  'subtopic': 'TODO',
+}
+
+const { variant, id: rawId, tags, image, title, description, url, class: className } = (Astro.props as Props)
+const id = getCardId(rawId)
+
+const cardVariantClass = variantToClass[variant]
+---
+<a id={id} href={url} class={c(cardStyles['card'], cardVariantClass, className)}>
+  <div class={cardStyles['card__image-wrapper']}>
+    <img
+      src={image.url}
+      alt={image.alt}
+      class={cardStyles['card__image-wrapper__image']}
+    />
+  </div>
+  <div class={cardStyles['card__content']}>
+    <div class={cardStyles['card__content__text']}>
+      <h3 class={cardStyles['card__content__text__title']}>{title}</h3>
+      <p class={cardStyles['card__content__text__description']}>{description}</p>
+    </div>
+    <div class={cardStyles['card__content__bottom']}>
+      <span class={cardStyles['card__content__bottom__link']}>Learn more&nbsp;&nbsp;→</span>
+    </div>
+  </div>
+</a>

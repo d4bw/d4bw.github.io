@@ -1,3 +1,85 @@
+@use "../border-radius";
+@use "../color";
+@use "../text";
+@use "../spacing";
+
 .card {
-  
+  @include color.text(text, dark);
+  @include color.background(background, light);
+  border-radius: var(--card-border-radius);
+  display: flex;
+
+  &--default {
+    --card-content-padding-vertical: 2rem;
+    --card-content-padding-horizontal: 1.25rem;
+    --card-border-radius: #{border-radius.get(xs)};
+    --card-image-aspect-ratio-x: 4;
+    --card-image-aspect-ratio-y: 3;
+
+    width: min(100%, 25rem);
+    flex-direction: column;
+  }
+
+  &--full-width {
+    --card-content-padding-vertical: 4rem;
+    --card-content-padding-horizontal: 2.5rem;
+    --card-border-radius: 1.25rem;
+    --card-image-aspect-ratio-x: 1;
+    --card-image-aspect-ratio-y: 1;
+
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  &__image-wrapper {
+    border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: calc(100% * var(--card-image-aspect-ratio-y) / var(--card-image-aspect-ratio-x));
+
+    &__image {
+      position: absolute;
+      inset: 0;
+      object-fit: cover;
+      aspect-ratio: var(--card-image-aspect-ratio-x) / var(--card-image-aspect-ratio-y);
+    }
+  }
+
+  &__content {
+    padding: var(--card-content-padding-vertical) var(--card-content-padding-horizontal);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--card-content-padding-vertical);
+
+    &__text {
+      /* empty */
+      &__title {
+        @include text.family(display);
+        @include text.size(subheading);
+        @include text.weight(semibold);
+        margin-bottom: 0.5em;
+      }
+      &__description {
+        @include text.family(display);
+        @include text.size(base);
+        @include text.weight(medium);
+      }  
+    }
+    &__bottom {
+      display: flex;
+
+      &__link {
+        @include text.family(default);
+        @include text.size(base);
+        @include text.weight(semibold);
+        @include color.text(text, link);
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 }

@@ -21,7 +21,7 @@
   $scrollbar-size: 8px,
   $track-color: color.get(surface, light),
   $thumb-color: color.get(text, dark),
-  $track-border-radius: $scrollbar-size,
+  $track-border-radius: 0,
   $thumb-padding: 1px,
   $thumb-border-radius: $scrollbar-size,
   ) {
@@ -45,7 +45,7 @@
 // utility mixin for clamping flexbox items within a specific number of columns.
 // ensure the flex container can wrap items.
 // set `$fix-col-widths` to true to make all items equal width
-@mixin clamp-flex-cols($n_cols-min, $n_cols-max, $col-min-width: 0, $row-gap: 0px, $col-gap: 0px, $container-max-width: 100%, $fix-col-widths: false) {  
+@mixin clamp-flex-cols($n_cols-min, $n_cols-max, $col-min-width: 0, $row-gap: 0px, $col-gap: $row-gap, $container-max-width: 100%, $fix-col-widths: false) {  
   --tmp-cg: #{$col-gap};
   --tmp-conmw: #{$container-max-width};
 
@@ -54,12 +54,10 @@
     $_grow: 0;
   }
 
-  flex: $_grow 0 css.min(
-    css.max(
-      $col-min-width,
-      calc(#{math.div(var(--tmp-conmw), $n_cols-max)} - var(--tmp-cg) * #{math.div($n_cols-max - 1, $n_cols-max)}), 
-    ),
-    calc(#{math.div(var(--tmp-conmw), $n_cols-min)} - var(--tmp-cg) * #{math.div($n_cols-min - 1, $n_cols-min)}),
+  flex: $_grow 0 css.clam(
+    $col-min-width,
+    calc(var(--tmp-conmw) / $n_cols-max - var(--tmp-cg) * #{math.div($n_cols-max - 1, $n_cols-max)}), 
+    calc(var(--tmp-conmw) / $n_cols-min - var(--tmp-cg) * #{math.div($n_cols-min - 1, $n_cols-min)}),
   );
 }
 
@@ -72,11 +70,9 @@
   --tmp-cg: #{$col-gap};
   --tmp-conmw: #{$container-max-width};
 
-  $val: css.min(
-    css.max(
-      var(--tmp-colmw),
-      calc(#{math.div(var(--tmp-conmw), $n_cols-max)} - var(--tmp-cg) * #{math.div($n_cols-max - 1, $n_cols-max)}),
-    ),
+  $val: css.clam(
+    var(--tmp-colmw),
+    calc(#{math.div(var(--tmp-conmw), $n_cols-max)} - var(--tmp-cg) * #{math.div($n_cols-max - 1, $n_cols-max)}),
     calc(#{math.div(var(--tmp-conmw), $n_cols-min)} - var(--tmp-cg) * #{math.div($n_cols-min - 1, $n_cols-min)}),
   );
   $col-width: minmax(#{$val}, 1fr);

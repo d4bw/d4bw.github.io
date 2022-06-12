@@ -1,2 +1,2 @@
-export { default } from "./ToC"
-export * from "./ToC"
+export { default } from "./ToC.solid"
+export * from "./ToC.solid"

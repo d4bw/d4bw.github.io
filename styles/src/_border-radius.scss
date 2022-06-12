@@ -2,7 +2,7 @@
 @use "./spacing";
 
 $_border-radius: (
-  none: 0rem,
+  none: 0,
   minimal: spacing.get(px, 4),
   xs: spacing.get(xs),
   md: spacing.get(md),

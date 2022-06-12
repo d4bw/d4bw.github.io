@@ -1,0 +1,26 @@
+---
+import c from "@/utils/c"
+
+import homepageStyles from "~/styles/src/pages/home.module.scss"
+import buttonStyles from "~/styles/src/components/button.module.scss"
+---
+<div id="hero" class={homepageStyles['homepage__hero']}>
+  <div class={homepageStyles['homepage__hero__content']}>
+    <div class={homepageStyles['homepage__hero__content__text']}>
+      <span class={homepageStyles['homepage__hero__content__title']}>Design for a Better World</span>
+      <h2 class={homepageStyles['homepage__hero__content__quote']}>If it is design that got us into today's mess, perhaps it is design that can get us out.</h2>
+    </div>
+    <a
+      href="#topics"
+      type="button"
+      class={c(
+        buttonStyles['button'],
+        buttonStyles['button--variant--pill'],
+        buttonStyles['button--fill-solid'],
+        homepageStyles['homepage__hero__button'],
+      )}
+    >
+      Browse Topics ↓
+    </a>
+  </div>
+</div>

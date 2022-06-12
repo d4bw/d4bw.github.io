@@ -1,0 +1,63 @@
+---
+import LinkButton from "@/components/Button/LinkButton.astro"
+
+import c from "@/utils/c"
+
+import homepageStyles from "~/styles/src/pages/home.module.scss"
+
+import type { Topic } from "@/types/data/common.d"
+import type { HomepageTopicData } from "@/types/data/homepage.d"
+
+export interface Props extends HomepageTopicData {
+  topic: Topic
+}
+
+const { topic, description, url, image } = Astro.props
+
+const topicToIcon: Record<Topic, string> = {
+  "Sustainability": (await import('@/assets/icons/sustainability.svg')).default,
+  "Humanity-Centered Design": (await import('@/assets/icons/humanity-centered-design.svg')).default,
+  "Human Behavior": (await import('@/assets/icons/human-behavior.svg')).default,
+  "Meaning": (await import('@/assets/icons/meaning.svg')).default,
+}
+
+const topicToClass: Record<Topic, string> = {
+  "Sustainability": homepageStyles['homepage__topics__topic--sustainability'],
+  "Humanity-Centered Design": homepageStyles['homepage__topics__topic--humanity-centered-design'],
+  "Human Behavior": homepageStyles['homepage__topics__topic--human-behavior'],
+  "Meaning": homepageStyles['homepage__topics__topic--meaning'],
+}
+
+const icon = topicToIcon[topic]
+const className = topicToClass[topic]
+---
+
+<section class={c(homepageStyles['homepage__topics__topic'], className)}>
+  <div class={c(
+    homepageStyles['homepage__topics__topic__panel'],
+    homepageStyles['homepage__topics__topic__panel--content'],
+  )}>
+    <div class={homepageStyles['homepage__topics__topic__content__text']}>
+      <h2 class={homepageStyles['homepage__topics__topic__content__text__heading']}>
+        <span>{topic}</span>
+        <img src={icon} alt={`Icon for ${topic}`} />
+      </h2>
+      <p>{description}</p>
+    </div>
+    <LinkButton
+      href={url}
+      variant="pill"
+      fill="outlined"
+      label="See Case Study"
+      class={homepageStyles['homepage__topics__topic__content__button']}
+    />
+  </div>
+  <img
+    src={image.url}
+    alt={image.alt}
+    class={c(
+      homepageStyles['homepage__topics__topic__panel'],
+      homepageStyles['homepage__topics__topic__panel--image'],
+    )}
+  />
+</section>

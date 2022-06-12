@@ -1,0 +1,24 @@
+---
+import c from "@/utils/c"
+
+import button from "~/styles/src/components/button.module.scss"
+
+import type { LinkButtonProps } from "./button.types"
+
+export type Props = LinkButtonProps
+
+const { href, variant, fill, label, class: className } = (Astro.props as LinkButtonProps)
+---
+
+<a
+  href={href}
+  type="button"
+  class={c(
+    button['button'],
+    button[`button--variant--${variant}`],
+    button[`button--fill--${fill}`],
+    className,
+  )}
+>
+  {label}
+</a>

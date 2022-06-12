@@ -1,12 +1,17 @@
 @use "sass:map";
+@use "sass:math";
 
 $_breakpoints: (
   tablet-md: 768px,
-  desktop-lg: 1440px,
+  desktop-lg: 1440px, // 1440px
 );
 
 @function get($k...) {
   @return map.get($_breakpoints, $k...);
+}
+
+@function get-rem($k...) {
+  @return math.div(map.get($_breakpoints, $k...), 16px) * 1rem;
 }
 
 @mixin min($k...) {

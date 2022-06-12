@@ -1,17 +1,14 @@
 @use "../color";
 @use "../text";
 
-.body {
+:global(#__root) {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-  @include color.text(text, light);
-  @include color.background(background, dark);
-  @include text.size(base); 
-
+  
   .main {
-    flex-grow: 1;
     width: 100%;
+    flex: 1 0 auto;
   }
 }

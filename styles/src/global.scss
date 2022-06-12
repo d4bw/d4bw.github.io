@@ -1,7 +1,21 @@
+@use "./color";
 @use "./text";
 @use "./mixins";
 
 html {
-  @include text.family(default);
+  scroll-behavior: smooth;
+}
+
+body {
+  // scrollbar and scrolling behavior
   @include mixins.scrollbar();
+  overflow-x: hidden;
+
+  // font styles
+  @include text.family(default);
+  @include text.size(base);
+
+  // color theme
+  @include color.text(text, light);
+  @include color.background(background, dark);
 }

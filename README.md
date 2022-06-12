@@ -2,14 +2,38 @@
 
 This is the repository for all aspects of the Design for a Better World website.
 
-## File structure: Overview
+## File structure
 
-|   folder name     |   description |
-|   :--             |   :--
-|   `data`          |   collection of YAML files used to create cards. Anything changed will probably just be in here
-|   `packages`      |   collection of shared packages that may be used across website implementations
-|   `styles`        |   CSS styles for the website
-|   `website-react` |   an implementation of the site using the UI framework [React](https://reactjs.org/) and meta-framework for React [Next.js](https://nextjs.org/)
+```
+/
+├── .github/
+├── data/
+├── node_modules/
+├── packages/
+├── styles/
+├── website-astro/
+├── .gitignore
+├── .npmrc
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+└── README.md
+```
+
+| item                  | description |
+| :-------------------- | :---------- |
+| `.github/`            | configuration files for GitHub, such as automatic workflows for building and deploying the site.
+| `data/`               | collection of YAML files used to create cards. Anything changed will probably just be in here
+| `node_modules/`       | external dependencies for the entire workspace. Should never be edited manually.
+| `packages/`           | collection of shared packages that may be used across website implementations
+| `styles/`             | CSS styles for the website
+| `website-astro/`      | an implementation of the site using the static site generation framework [Astro](https://astro.build/), with [Solid](https://www.solidjs.com/) for client-side JavaScript components
+| `.gitignore`          | describes files to exclude from version control
+| `.npmrc`              | configures package manager behavior
+| `package.json`        | marks this entire project as a workspace
+| `pnpm-lock.yaml`      | lockfile of all installed dependencies and their versions across all projects in this workspace. Should never be edited manually
+| `pnpm-workspace.yaml` | configuration for setting up this folder as a workspace
+| `README.md`           | the file you're currently reading 
 
 ## Technology
 
@@ -44,9 +68,9 @@ All JavaScript code is written in [TypeScript](https://www.typescriptlang.org/) 
 
 3. Develop the website locally
 
-    * enter the directory of the website implementation you intend to test on (e.g. `website-react`):
+    * enter the directory of the website implementation you intend to test on (e.g. `website-astro`):
         ```sh
-        cd website-react
+        cd website-astro
         ```
     * start the development server for working on the website
         ```sh

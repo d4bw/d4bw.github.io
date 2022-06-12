@@ -1,0 +1,48 @@
+---
+import Logo from "../Logo"
+
+import logoStyles from "~/styles/src/components/logo.module.scss"
+import headerStyles from "~/styles/src/components/header.module.scss"
+
+import type { HeaderYaml } from "@/types/data/header.d"
+
+const headerYaml = (await import("~/data/header.yaml")).default as HeaderYaml
+const navItems = Object.entries(headerYaml['nav-items']).map(([label, item]) => ({ label, ...item }))
+---
+
+<header class={headerStyles['header']}>
+  <!-- left-aligned header contents - currently just logo -->
+  <div>
+    <a href="/" class={logoStyles['logo']}><Logo /></a>
+  </div>
+  <!-- right-aligned header nav -->
+  <nav class={headerStyles['header__nav']}>
+    <ul class={headerStyles['header__nav__items']}>
+      {navItems.map((item) => {
+        switch (item.type) {
+          case 'dropdown':
+            return (
+              <li class={headerStyles['header__nav__items__item']}>
+                <div class={headerStyles['header__nav__items__item__dropdown']}>
+                  <span class={headerStyles['header__nav__items__item__dropdown__label']}>Learn</span>
+                  <ul class={headerStyles['header__nav__items__item__dropdown__menu']}>
+                    {item.items.map(({ label, url }) => (
+                      <li class={headerStyles['header__nav__items__item__dropdown__menu__item']}>
+                        <a href={url} class={headerStyles['header__nav__items__item__dropdown__menu__item__link']}>{label}</a>  
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            )
+          case 'link':
+            return (
+              <li class={headerStyles['header__nav__items__item']}>
+                <a href={item.url} class={headerStyles['header__nav__items__item__link']}>{item.label}</a>
+              </li>
+            )
+        }
+      })}
+    </ul>
+  </nav>
+</header>

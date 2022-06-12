@@ -1,5 +1,8 @@
+@use "sass:list";
 @use "sass:map";
 @use "sass:math";
+@use "./scss-utils/list-utils";
+@use "./breakpoint";
 
 $_spacing: (
   px: (
@@ -21,10 +24,63 @@ $_spacing: (
   @return map.get($_spacing, $k...);
 }
 
+@mixin padding($args...) {
+  $_n: list.length($args);
+  @if $_n == 0 {
+    @error "no arguments passed to `spacing.padding`";
+  }
+  @if $_n > 4 {
+    @error "`spacing.padding` accepts up to 4 arguments, but received " + #{$n};
+  }
+  
+  $mapped: ();
+  @each $k in $args {
+    $mapped: list.append($mapped, get($k));
+  }
+  padding: list-utils.join($mapped, " ");
+}
+
 @function section-spacing() {
   @return get(4);
 }
 
-@mixin section-padding() {
-  padding: section-spacing();
+@mixin section-padding(
+  $top: null,
+  $bot: null,
+  $left: null,
+  $right: null,
+  $top-lg: $top,
+  $bot-lg: $bot,
+  $left-lg: $left,
+  $right-lg: $right,
+) {
+  padding: get(4) get(2);
+  @if $top != null {
+    padding-top: $top;
+  }
+  @if $right != null {
+    padding-right: $right;
+  }
+  @if $bot != null {
+    padding-bottom: $bot;
+  }
+  @if $left != null {
+    padding-left: $left;
+  }
+
+  @include breakpoint.min(tablet-md) {
+    padding: get(4);
+    @if $top-lg != null {
+      padding-top: $top-lg;
+    }
+    @if $right-lg != null {
+      padding-right: $right-lg;
+    }
+    @if $bot-lg != null {
+      padding-bottom: $bot-lg;
+    }
+    @if $left-lg != null {
+      padding-left: $left-lg;
+    }
+  }
 }

@@ -4,6 +4,7 @@
 
 .button {
   @include text.button;
+  white-space: nowrap;
   color: var(--button-color-text);
   background-color: var(--button-color-background);
   border: spacing.get(px, 1) solid var(--button-color-border, transparent);

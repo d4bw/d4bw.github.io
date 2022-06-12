@@ -1,0 +1,21 @@
+topics:
+    Sustainability:
+        description: Design must change from being unintentionally destructive to being intentionally constructive. Repairing what has gone wrong. Repairing, collaborating, sustaining.
+        url: /sustainability
+        image:
+            url: ./assets/sustainability.png # https://images.unsplash.com/photo-1601985705806-5b9a71f6004f # https://unsplash.com/photos/dDVU6D_6T80
+    Humanity-Centered Design:
+        description: The active practice of designing with entire ecosystems of people in mind. This means designing with the people you're designing for, and supporting their designs derived from their unique lived experiences.
+        url: /humanity-centered-design
+        image:
+            url: ./assets/humanity-centered-design.png # https://images.unsplash.com/photo-1552664730-d307ca884978 # https://unsplash.com/photos/Oalh2MojUuk
+    Human Behavior:
+        description: When people are born into an existing society, the beliefs and behaviors of that society seem so natural and reasonable to those who have experienced no other system, that they seldom question or even think it reasonable to change.
+        url: /human-behavior
+        image:
+            url: ./assets/human-behavior.png # https://images.pexels.com/photos/613431/pexels-photo-613431.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2 # https://www.pexels.com/photo/brown-man-face-figurine-613431/
+    Meaning:
+        description: Changes must occur with how we teach and how we work, the relationship between work and family life, the economic systems that govern our businesses and economies.
+        url: /meaning
+        image:
+            url: ./assets/meaning.png

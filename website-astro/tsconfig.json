@@ -9,6 +9,13 @@
     "resolveJsonModule": true,
     // Enable stricter transpilation for better output.
     "isolatedModules": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "~/*": ["../*"],
+    },
+
     // Add type definitions for our Vite runtime.
     "types": ["vite/client"]
   }

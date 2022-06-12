@@ -1,42 +1,37 @@
-# Welcome to [Astro](https://astro.build)
+# website-astro
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/starter)
+This is an implementation of the Design for a Better World website, written using [Astro](https://astro.build/). It additionally uses [Solid](https://www.solidjs.com/) for client-side JavaScript components.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## File structure
 
 ```
 /
 ├── public/
-│   └── favicon.ico
 ├── src/
-│   ├── components/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+├── .gitignore
+├── astro.config.mjs
+├── package.json
+├── README.md
+└── tsconfig.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+| item                | description |
+| :------------------ | :---------- |
+| `public/`           | place to put static files. For example, if we have a file `public/static/example.png`, then that file will be available at `/static/example.png` on the website. Static files should be used sparingly, with local assets preferred whenever possible; if necessary, however, static files should then be scoped inside `public/static/` to avoid any possible route conflicts
+| `src/`              | implementation details for the website, encompassing components, pages, utils, etc
+| `.gitignore`        | describes files to exclude from version control
+| `astro.config.mjs`  | the Astro configuration for this project
+| `package.json`      | defines the dependencies, npm scripts, etc for this project
+| `README.md`         | the file you're currently reading
+| `tsconfig.json`     | configuration file for TypeScript, a superset of JavaScript that adds compile-time type checking
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components or layouts.
+## Commands
 
-Any static assets, like images, can be placed in the `public/` directory.
+The following commands can be run at the root of this folder (i.e. `website-astro`):
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command           | Action                                       |
-| :---------------- | :------------------------------------------- |
-| `npm install`     | Installs dependencies                        |
-| `npm run dev`     | Starts local dev server at `localhost:3000`  |
-| `npm run build`   | Build your production site to `./dist/`      |
-| `npm run preview` | Preview your build locally, before deploying |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://github.com/withastro/astro) or jump into our [Discord server](https://astro.build/chat).
+| Command           | Action                                                  |
+| :---------------- | :------------------------------------------------------ |
+| `pnpm i`          | Installs dependencies for all projects in the workspace |
+| `pnpm dev`        | Starts a local development server at `localhost:3000`   |
+| `pnpm build`      | Builds a production site to `./dist/`                   |
+| `pnpm preview`    | Runs the built production site locally                  |

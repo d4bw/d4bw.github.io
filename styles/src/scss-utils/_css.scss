@@ -22,3 +22,8 @@
 @function max($args...) {
   @return _css-func(max, $args);
 }
+
+// not sure why but scss isnt allowing `clamp` to be used as the function name
+@function clam($args...) {
+  @return _css-func(clamp, $args);
+}

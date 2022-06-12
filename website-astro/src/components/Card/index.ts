@@ -1,2 +1,2 @@
-export { default } from "./Card"
-export * from "./Card"
+export { default } from "./Card.astro"
+export * from "./Card.astro"

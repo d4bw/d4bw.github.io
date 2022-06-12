@@ -1,0 +1,18 @@
+---
+import HomepageTopic from "./Topic.astro"
+
+import homepageStyles from "~/styles/src/pages/home.module.scss"
+
+import type { Topic } from "@/types/data/common.d"
+import type { HomepageTopicsYaml } from "@/types/data/homepage.d"
+
+const homepageTopicsYaml = await import('~/data/pages/home/topics.yaml') as HomepageTopicsYaml
+
+const homepageTopics = Object.entries(homepageTopicsYaml.topics).map(([topic, { description, url, image }]) => ({ topic, description, url, image }))
+---
+
+<div id="topics" class={homepageStyles['homepage__topics']}>
+  {homepageTopics.map(({ topic, description, url, image }) => (
+    <HomepageTopic topic={topic as Topic} description={description} url={url} image={image} />
+  ))}
+</div>

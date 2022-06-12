@@ -1,0 +1,18 @@
+nav-items:
+    Learn:
+        type: dropdown
+        items:
+          - label: Sustainability
+            url: /sustainability
+          - label: Humanity-Centered Design
+            url: /humanity-centered-design
+          - label: Human Behavior
+            url: /human-behavior
+          - label: Meaning
+            url: /meaning
+    Resources:
+        type: link
+        url: /resources
+    About:
+        type: link
+        url: /about 
