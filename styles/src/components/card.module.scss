@@ -17,6 +17,7 @@
     --card-image-aspect-ratio-y: 3;
 
     width: min(100%, 25rem);
+    box-shadow: 0px 4px 5px #efefef;
     flex-direction: column;
   }
 
@@ -28,6 +29,7 @@
     --card-image-aspect-ratio-y: 1;
 
     width: 100%;
+    // box-shadow: ; // TODO
     flex-wrap: wrap;
   }
 
